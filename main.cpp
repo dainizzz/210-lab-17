@@ -18,12 +18,12 @@ void output(Node *);
 
 // addNodeToFront() adds a node with a random value to the front of the linked list
 // arguments: a pointer to the head node of a linked list of type Node
-// returns: none
+// returns: nothing
 void addNodeToFront(Node *);
 
-// <description>
-// arguments:
-// returns:
+// addNodeToFront() adds a node with a random value to the end of the linked list
+// arguments: a pointer to the head node of a linked list of type Node
+// returns: nothing
 void addNodeToTail(Node *);
 
 // <description>
@@ -47,19 +47,18 @@ int main() {
 
     // create a linked list of size SIZE with random numbers 0-99
     for (int i = 0; i < SIZE; i++) {
-        int tmp_val = rand() % 100;
-        Node *newVal = new Node;
-        
         // adds node at head
         if (!head) { // if this is the first node, it's the new head
-            head = newVal;
-            newVal->next = nullptr;
-            newVal->value = tmp_val;
+            addNodeToFront(head);
+            // head = newVal;
+            // newVal->next = nullptr;
+            // newVal->value = tmp_val;
         }
         else { // its a second or subsequent node; place at the head
-            newVal->next = head;
-            newVal->value = tmp_val;
-            head = newVal;
+            addNodeToTail(head);
+            // newVal->next = head;
+            // newVal->value = tmp_val;
+            // head = newVal;
         }
     }
     output(head);
@@ -119,6 +118,7 @@ void addNodeToFront(Node *head) {
     head = newVal;
     newVal->next = nullptr;
     newVal->value = tmp_val;
+    delete newVal;
 }
 
 void addNodeToTail(Node *head) {
@@ -127,6 +127,7 @@ void addNodeToTail(Node *head) {
     newVal->next = head;
     newVal->value = tmp_val;
     head = newVal;
+    delete newVal;
 }
 
 void insertNode(Node *, Node *) {
