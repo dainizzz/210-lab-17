@@ -17,36 +17,36 @@ struct Node {
 void output(Node *);
 
 // addNodeToFront() adds a node with the value tmp_value to the front of the linked list
-// arguments: a pointer to the head node of a linked list of type Node, an integer value
+// arguments: a pointer to the head node of a linked list of type Node, a float value
 // returns: nothing
-void addNodeToFront(Node *, int);
+void addNodeToFront(Node *&, float);
 
 // addNodeToFront() adds a node with the value tmp_value to the end of the linked list
-// arguments: a pointer to the head node of a linked list of type Node, an integer value
+// arguments: a pointer to the head node of a linked list of type Node, a float value
 // returns: nothing
-void addNodeToTail(Node *, int);
+void addNodeToTail(Node *&, float);
 
 // insertNode() inserts a node with a value tmp_value at the position specified by the user
-// arguments: a pointer to the head node of a linked list of type Node, an integer value
+// arguments: a pointer to the head node of a linked list of type Node, a float value
 // returns: nothing
-void insertNode(Node *, int);
+void insertNode(Node *&, float);
 
 // deleteNode() prompts the user for the number of the linked list item to be deleted and deletes the node
 // arguments: a pointer to the head node of a linked list of type Node
 // returns: nothing
-void deleteNode(Node *);
+void deleteNode(Node *&);
 
 // deleteList() deletes all elements in a linked list
 // arguments: a pointer to the head node of a linked list of type Node
 // returns: nothing
-void deleteList(Node *);
+void deleteList(Node *&);
 
 int main() {
     Node *head = nullptr;
 
     // create a linked list of size SIZE with random numbers 0-99
     for (int i = 0; i < SIZE; i++) {
-        int tmp_val = rand() % 100;
+        auto tmp_val = static_cast<float>(rand() % 100);
         if (!head) { // if this is the first node, it's the new head
             addNodeToFront(head, tmp_val);
         }
@@ -82,23 +82,22 @@ void output(Node * hd) {
     cout << endl;
 }
 
-void addNodeToFront(Node *head, int tmp_val) {
+// The below functions all use pass by reference because the nodes need to be modified
+void addNodeToFront(Node *&head, float tmp_val) {
     Node *newVal = new Node;
     head = newVal;
     newVal->next = nullptr;
     newVal->value = tmp_val;
-    delete newVal;
 }
 
-void addNodeToTail(Node *head, int tmp_val) {
+void addNodeToTail(Node *&head, float tmp_val) {
     Node *newVal = new Node;
     newVal->next = head;
     newVal->value = tmp_val;
     head = newVal;
-    delete newVal;
 }
 
-void insertNode(Node *head, int tmp_val) {
+void insertNode(Node *&head, float tmp_val) {
     int entry;
     cout << "After which node to insert " << tmp_val << "? " << endl;
     output(head);
@@ -121,7 +120,7 @@ void insertNode(Node *head, int tmp_val) {
     prev->next = newnode;
 }
 
-void deleteNode(Node *head) {
+void deleteNode(Node *&head) {
     // deleting a node
     cout << "Which node to delete? " << endl;
     output(head);
@@ -147,7 +146,7 @@ void deleteNode(Node *head) {
     }
 }
 
-void deleteList(Node *head) {
+void deleteList(Node *&head) {
     Node * current = head;
     while (current) {
         head = current->next;
