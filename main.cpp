@@ -8,7 +8,35 @@ struct Node {
     Node *next;
 };
 
+// <description>
+// arguments:
+// returns:
 void output(Node *);
+
+// <description>
+// arguments:
+// returns:
+void addNodeToFront(Node *);
+
+// <description>
+// arguments:
+// returns:
+void addNodeToTail(Node *);
+
+// <description>
+// arguments:
+// returns:
+void insertNode(Node *, Node *);
+
+// <description>
+// arguments:
+// returns:
+void deleteNode(Node *);
+
+// <description>
+// arguments:
+// returns:
+void deleteList(Node *);
 
 int main() {
     Node *head = nullptr;
@@ -111,4 +139,19 @@ void output(Node * hd) {
         current = current->next;
     }
     cout << endl;
+}
+
+void addNodeToFront(Node *) {
+}
+
+void addNodeToTail(Node *) {
+}
+
+void insertNode(Node *, Node *) {
+}
+
+void deleteNode(Node *) {
+}
+
+void deleteList(Node *) {
 }
