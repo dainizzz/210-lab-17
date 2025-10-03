@@ -8,9 +8,9 @@ struct Node {
     Node *next;
 };
 
-// <description>
-// arguments:
-// returns:
+// output() outputs the values of the elements of a linked list and numbers them
+// arguments: a pointer to the head node of a linked list of type Node
+// returns: nothing
 void output(Node *);
 
 // <description>
@@ -28,9 +28,9 @@ void addNodeToTail(Node *);
 // returns:
 void insertNode(Node *, Node *);
 
-// <description>
-// arguments:
-// returns:
+// deleteNode() prompts the user for the number of the linked list item to be deleted and deletes the node
+// arguments: a pointer to the head node of a linked list of type Node
+// returns: nothing
 void deleteNode(Node *);
 
 // <description>
@@ -61,34 +61,37 @@ int main() {
     }
     output(head);
 
-    // deleting a node
-    Node * current = head;
-    cout << "Which node to delete? " << endl;
-    output(head);
-    int entry;
-    cout << "Choice --> ";
-    cin >> entry;
+    deleteNode(head);
 
-    // traverse that many times and delete that node
-    current = head;
-    Node *prev = head;
-    for (int i = 0; i < (entry-1); i++)
-        if (i == 0)
-            current = current->next;
-        else {
-            current = current->next;
-            prev = prev->next;
-        }
-    // at this point, delete current and reroute pointers
-    if (current) {  // checks for current to be valid before deleting the node
-        prev->next = current->next;
-        delete current;
-        current = nullptr;
-    }
-    output(head);
+    // // deleting a node
+    // Node * current = head;
+    // cout << "Which node to delete? " << endl;
+    // output(head);
+    // int entry;
+    // cout << "Choice --> ";
+    // cin >> entry;
+    //
+    // // traverse that many times and delete that node
+    // current = head;
+    // Node *prev = head;
+    // for (int i = 0; i < (entry-1); i++)
+    //     if (i == 0)
+    //         current = current->next;
+    //     else {
+    //         current = current->next;
+    //         prev = prev->next;
+    //     }
+    // // at this point, delete current and reroute pointers
+    // if (current) {  // checks for current to be valid before deleting the node
+    //     prev->next = current->next;
+    //     delete current;
+    //     current = nullptr;
+    // }
+    // output(head);
 
     // insert a node
-    current = head;
+    Node *current = head;
+    int entry;
     cout << "After which node to insert 10000? " << endl;
     count = 1;
     while (current) {
@@ -99,7 +102,7 @@ int main() {
     cin >> entry;
 
     current = head;
-    prev = head;
+    Node *prev = head;
     for (int i = 0; i < (entry); i++)
         if (i == 0)
             current = current->next;
@@ -150,7 +153,31 @@ void addNodeToTail(Node *) {
 void insertNode(Node *, Node *) {
 }
 
-void deleteNode(Node *) {
+void deleteNode(Node *head) {
+    // deleting a node
+    cout << "Which node to delete? " << endl;
+    output(head);
+    int entry;
+    cout << "Choice --> ";
+    cin >> entry;
+
+    // traverse that many times and delete that node
+    Node * current = head;
+    Node *prev = head;
+    for (int i = 0; i < (entry-1); i++)
+        if (i == 0)
+            current = current->next;
+        else {
+            current = current->next;
+            prev = prev->next;
+        }
+    // at this point, delete current and reroute pointers
+    if (current) {  // checks for current to be valid before deleting the node
+        prev->next = current->next;
+        delete current;
+        current = nullptr;
+    }
+    output(head);
 }
 
 void deleteList(Node *) {
