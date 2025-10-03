@@ -57,10 +57,13 @@ int main() {
     output(head);
 
     deleteNode(head);
+    output(head);
 
     insertNode(head, 10000);
+    output(head);
 
     deleteList(head);
+    output(head);
 
     return 0;
 }
@@ -116,7 +119,6 @@ void insertNode(Node *head, int tmp_val) {
     newnode->value = tmp_val;
     newnode->next = current;
     prev->next = newnode;
-    output(head);
 }
 
 void deleteNode(Node *head) {
@@ -143,7 +145,6 @@ void deleteNode(Node *head) {
         delete current;
         current = nullptr;
     }
-    output(head);
 }
 
 void deleteList(Node *head) {
@@ -154,5 +155,4 @@ void deleteList(Node *head) {
         current = head;
     }
     head = nullptr;
-    output(head);
 }
