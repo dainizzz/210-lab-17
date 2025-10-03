@@ -1,3 +1,6 @@
+// COMSC-210 | Lab 17 | Dainiz Almazan
+// IDE used: CLion
+
 #include <iostream>
 using namespace std;
 
@@ -13,9 +16,9 @@ struct Node {
 // returns: nothing
 void output(Node *);
 
-// <description>
-// arguments:
-// returns:
+// addNodeToFront() adds a node with a random value to the front of the linked list
+// arguments: a pointer to the head node of a linked list of type Node
+// returns: none
 void addNodeToFront(Node *);
 
 // <description>
@@ -33,9 +36,9 @@ void insertNode(Node *, Node *);
 // returns: nothing
 void deleteNode(Node *);
 
-// <description>
-// arguments:
-// returns:
+// deleteList() deletes all elements in a linked list
+// arguments: a pointer to the head node of a linked list of type Node
+// returns: nothing
 void deleteList(Node *);
 
 int main() {
@@ -62,32 +65,6 @@ int main() {
     output(head);
 
     deleteNode(head);
-
-    // // deleting a node
-    // Node * current = head;
-    // cout << "Which node to delete? " << endl;
-    // output(head);
-    // int entry;
-    // cout << "Choice --> ";
-    // cin >> entry;
-    //
-    // // traverse that many times and delete that node
-    // current = head;
-    // Node *prev = head;
-    // for (int i = 0; i < (entry-1); i++)
-    //     if (i == 0)
-    //         current = current->next;
-    //     else {
-    //         current = current->next;
-    //         prev = prev->next;
-    //     }
-    // // at this point, delete current and reroute pointers
-    // if (current) {  // checks for current to be valid before deleting the node
-    //     prev->next = current->next;
-    //     delete current;
-    //     current = nullptr;
-    // }
-    // output(head);
 
     // insert a node
     Node *current = head;
@@ -117,15 +94,7 @@ int main() {
     prev->next = newnode;
     output(head);
 
-    // deleting the linked list
-    current = head;
-    while (current) {
-        head = current->next;
-        delete current;
-        current = head;
-    }
-    head = nullptr;
-    output(head);
+    deleteList(head);
 
     return 0;
 }
@@ -144,10 +113,20 @@ void output(Node * hd) {
     cout << endl;
 }
 
-void addNodeToFront(Node *) {
+void addNodeToFront(Node *head) {
+    int tmp_val = rand() % 100;
+    Node *newVal = new Node;
+    head = newVal;
+    newVal->next = nullptr;
+    newVal->value = tmp_val;
 }
 
-void addNodeToTail(Node *) {
+void addNodeToTail(Node *head) {
+    int tmp_val = rand() % 100;
+    Node *newVal = new Node;
+    newVal->next = head;
+    newVal->value = tmp_val;
+    head = newVal;
 }
 
 void insertNode(Node *, Node *) {
@@ -180,5 +159,13 @@ void deleteNode(Node *head) {
     output(head);
 }
 
-void deleteList(Node *) {
+void deleteList(Node *head) {
+    Node * current = head;
+    while (current) {
+        head = current->next;
+        delete current;
+        current = head;
+    }
+    head = nullptr;
+    output(head);
 }
