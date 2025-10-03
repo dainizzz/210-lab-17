@@ -31,7 +31,7 @@ void addNodeToTail(Node *&, float);
 // returns: nothing
 void insertNode(Node *&, float);
 
-// deleteNode() prompts the user for the number of the linked list item to be deleted and deletes the node
+// deleteNode() prompts the user to specify a linked list node to be deleted and then deletes that node
 // arguments: a pointer to the head node of a linked list of type Node
 // returns: nothing
 void deleteNode(Node *&);
@@ -46,11 +46,12 @@ int main() {
 
     // create a linked list of size SIZE with random numbers 0-99
     for (int i = 0; i < SIZE; i++) {
+        // Explicitly converting from int to float
         auto tmp_val = static_cast<float>(rand() % 100);
         if (!head) { // if this is the first node, it's the new head
             addNodeToFront(head, tmp_val);
         }
-        else { // its a second or subsequent node; place at the head
+        else { // it's a second or subsequent node; place at the head
             addNodeToTail(head, tmp_val);
         }
     }
@@ -82,7 +83,7 @@ void output(Node * hd) {
     cout << endl;
 }
 
-// The below functions all use pass by reference because the nodes need to be modified
+// The below functions all use pass by reference because the nodes need to be directly modified
 void addNodeToFront(Node *&head, float tmp_val) {
     Node *newVal = new Node;
     head = newVal;
